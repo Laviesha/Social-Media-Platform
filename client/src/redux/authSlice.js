@@ -32,7 +32,8 @@ export const authSlice = createSlice({
                 console.log(action.payload)
                state.user.followings.push(action.payload)
             }
-        },
+         },
+        
         
         bookmarkPost(state, action){
             if(state.user.bookmarkedPosts.some(post => post._id === action.payload._id)){

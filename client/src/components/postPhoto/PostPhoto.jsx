@@ -14,7 +14,8 @@ const PostPhoto = ({ post }) => {
      onMouseLeave={() => setIsHovered(false)}
      to={`/postDetails/${post._id}`}
     >
-      <img src={postdemoimg}/>
+      {/* <img src={postdemoimg}/> */}
+      <img className={classes.postImg} src={post?.photo ? `http://localhost:5000/images/${post?.photo}` : postdemoimg} />
       {isHovered && <div className={classes.likes}>{post?.likes?.length} likes</div>}
     </Link>
   )

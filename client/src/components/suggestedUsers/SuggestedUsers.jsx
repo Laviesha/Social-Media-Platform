@@ -52,7 +52,8 @@ const SuggestedUsers = () => {
     <div className={classes.container}>
       <div className={classes.wrapper}>
         <div className={classes.myProfile}>
-          <img src={man} className={classes.profileUserImg} alt=""/>
+          {/* <img src={man} className={classes.profileUserImg} alt=""/> */}
+         <img src={user.profileImg ? `http://localhost:5000/images/${user.profileImg}` : man} className={classes.profileUserImg} alt="Profile"/>
           <div className={classes.profileData}>
             <span>{user.username}</span>
             {/* <span>{capitalizeFirstLetter(user.username)}</span> */}
@@ -65,7 +66,8 @@ const SuggestedUsers = () => {
               {suggestedUsers?.map((suggestedUser) => (
                 <div className={classes.suggestedUser} key={suggestedUser._id}>
                   <Link to={`/profileDetail/${suggestedUser._id}`}>
-                    <img src={suggestedUser?.photo ? suggestedUser.photo : man} className={classes.imgUser}/>
+                     {/* <img src={suggestedUser?.photo ? suggestedUser.photo : man} className={classes.imgUser}/>  */}
+                    <img src={suggestedUser.profileImg ? `http://localhost:5000/images/${suggestedUser.profileImg}` : man} className={classes.profileUserImg} alt="Profile"/>
                   </Link> 
                   <div className={classes.suggestedUserData}>
                     <span>{suggestedUser.username}</span>
@@ -79,6 +81,7 @@ const SuggestedUsers = () => {
         ) : <h3 className={classes.title}>You have no suggested users</h3>}
       </div>
     </div>
+    
 
 )
 }

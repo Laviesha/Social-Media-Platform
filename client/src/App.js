@@ -1,5 +1,5 @@
 import './App.css';
-import Footer from './components/footer/Footer';
+// import Footer from './components/footer/Footer';
 import Navbar from './components/navbar/Navbar';
 import {Routes, Route, Navigate} from 'react-router-dom'
 import Home from './components/home/Home';
@@ -24,7 +24,7 @@ function App() {
         <Route path='/profileDetail/:id' element={user ? <ProfileDetail /> : <Navigate to='/login' />} />
         <Route path='/postDetails/:id' element={user ? <PostDetails /> : <Navigate to='/login' />} />
       </Routes>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }

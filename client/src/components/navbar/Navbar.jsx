@@ -8,6 +8,7 @@ import man from '../../assets/man.jpg'
 import classes from './navbar.module.css'
 import { useState } from 'react'
 import { useEffect } from 'react'
+import { format } from 'timeago.js'
 
 const Navbar = () => {
   const {token, user} = useSelector((state) => state.auth)
@@ -53,7 +54,14 @@ useEffect(() => {
   } else {
     setFilteredUsers(allUsers)
   }
-}, [searchText])
+}, [searchText,allUsers])
+// useEffect(() => {
+//   if(searchText){
+//      setFilteredUsers(allUsers.filter((user) => user.username.includes(searchText)))
+//   } else {
+//     setFilteredUsers(allUsers)
+//   }
+// }, [searchText])
 
 const handleLogout = () => {
   dispatch(logout())
@@ -119,7 +127,15 @@ return (
           <div onClick={() => setSearchText("")} className={classes.allUsersContainer}>
             {filteredUsers?.map((user) => (
               <Link to={`/profileDetail/${user._id}`} key={user._id}>
-                <img src={man}/>
+                {/* <img src={man}/> */}
+                {/* <img src={user?.profileImg ? `http://localhost:5000/images/${user?.profileImg}` : man} className={classes.profileUserImg} alt="Profile" />
+                   */}
+                {/* <img src={user?.profileImg ? `http://localhost:5000/image/${user?.profileImg}` : man} alt={user.username} /> */}
+                {/* <img
+                 
+                  src={filteredUsers?.profileImg ? `http://localhost:5000/images/${filteredUsers?.profileImg}` : man} className={classes.profileUserImg} alt="Profile"
+                /> */}
+                
                 <div className={classes.userData}>
                   <span>{user?.username}</span>
                   <span>{user?.bio?.slice(0, 10)}</span>
@@ -134,10 +150,15 @@ return (
           Upload
         </Link>
         <div className={classes.icons}>
-          {/* <AiOutlineUser /> */}
+          <AiOutlineUser   onClick={() => navigate(`/profileDetail/${user._id}`)}/>
           <AiOutlineLogout onClick={handleLogout} />
         </div>
-        <img src={man} className={classes.profileUserImg} onClick={() => setShowModal(prev => !prev)} />
+        {/* <img src={man} className={classes.profileUserImg} onClick={() => setShowModal(prev => !prev)} /> */}
+        <img
+                  onClick={() => setShowModal(prev => !prev)}
+                  src={user?.profileImg ? `http://localhost:5000/images/${user?.profileImg}` : man} className={classes.profileUserImg} alt="Profile"
+                />
+                
         {showModal &&
           <div className={classes.modal}>
             <span onClick={handleShowForm}>Update Profile</span>
@@ -177,7 +198,7 @@ return (
           {showMobileNav &&
             <div className={classes.navigation}>
               <div className={classes.left} onClick={() => setShowMobileNav(false)}>
-                <Link to='/'>WebDevMania</Link>
+                <Link to='/'>Social Media Platform</Link>
               </div>
               <AiOutlineClose className={classes.mobileCloseIcon} onClick={() => setShowMobileNav(false)} />
               <div className={classes.center}>
@@ -187,7 +208,11 @@ return (
                   <div onClick={() => setSearchText("")} className={classes.allUsersContainer}>
                     {filteredUsers?.map((user) => (
                       <Link to={`/profileDetail/${user._id}`} key={user._id} onClick={() => setShowMobileNav(false)}>
-                        <img src={user?.photo ? `http://localhost:5000/images/${user.photo}` : man} />
+                        {/* <img src={user?.photo ? `http://localhost:5000/images/${user.photo}` : man} /> */}
+                        {/* <img
+                 
+                  src={user.profileImg ? `http://localhost:5000/images/${user.profileImg}` : man} className={classes.profileUserImg} alt="Profile"
+                /> */}
                         <div className={classes.userData}>
                           <span>{user?.username}</span>
                           <span>{user?.bio?.slice(0, 10)}</span>
@@ -205,8 +230,7 @@ return (
                 </div>
                 <img
                   onClick={() => setShowModal(!showModal)}
-                  src={user?.profileImg ? `http://localhost:5000/images/${user?.profileImg}` : man}
-                  className={classes.profileUserImg}
+                  src={user.profileImg ? `http://localhost:5000/images/${user.profileImg}` : man} className={classes.profileUserImg} alt="Profile"
                 />
                 {showModal && (
                   <div className={classes.modal}>

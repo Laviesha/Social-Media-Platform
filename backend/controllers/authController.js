@@ -9,7 +9,10 @@ authController.post('/register', async(req, res) => {
         if(isExisting){
             throw new Error("Already such an email registered.")
         }  
-
+        const isUsernameExisting = await User.findOne({ username: req.body.username });
+        if (isUsernameExisting) {
+          return res.status(400).json({ message: "Username already exists" });
+        }
         const hashedPassword = await bcrypt.hash(req.body.password, 10)
 
         const newUser = await User.create({...req.body, password: hashedPassword})

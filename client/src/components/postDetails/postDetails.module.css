@@ -60,7 +60,7 @@
 }
 
 .userData > span:first-child{
-    text-transform: capitalize;
+    /* text-transform: capitalize; */
     color: #222;
     font-size: 24px;
     font-weight: 500;
@@ -94,6 +94,17 @@
     padding: 0.75rem;
 }
 
+.controlsLeft{
+   
+  text-align: right;
+    
+}
+.vv{
+    display: flex;
+    flex-direction: row;
+    gap:17rem;
+    
+}
 .inputSection{
     border: none;
     outline: none;
@@ -136,6 +147,8 @@
 @media only screen and (max-width: 992px){
     .wrapper{
         margin: 3rem auto;
+        flex-direction: column;
+        height: auto;
     }
 
     .inputSection{

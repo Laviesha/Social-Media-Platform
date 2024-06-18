@@ -31,11 +31,17 @@ const Rightside = () => {
 
   return (
     <div className={classes.container}>
+      <h2 className={classes.ll}>Your Followings</h2>
       <div className={classes.wrapper}>
         {friends?.length > 0 ? (
           friends?.map((friend) => (
              <Link className={classes.user} to={`/profileDetail/${friend._id}`} key={friend._id}>
-              <img src={man} className={classes.profileUserImg}/>
+              {/* <img src={man} className={classes.profileUserImg}/> */}
+              <img 
+                src={friend.profileImg ? `http://localhost:5000/images/${friend.profileImg}` : man} 
+                className={classes.profileUserImg} 
+                alt="Profile"
+              />            
               <div className={classes.userData}>
                 <span>{friend.username}</span>
                 {/* <span>{capitalizeFirstLetter(friend.username)}</span> */}
@@ -46,8 +52,9 @@ const Rightside = () => {
          : <span>You currently have no friends. Follow someone!</span>}
       </div>
     </div>
+
    
   )
 }
-
+// <img src={user.profileImg ? `http://localhost:5000/images/${user.profileImg}` : man} className={classes.profileUserImg} alt="Profile"/>
 export default Rightside

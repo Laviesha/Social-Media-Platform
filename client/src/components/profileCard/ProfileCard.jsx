@@ -2,7 +2,7 @@ import React from 'react'
 import classes from './profileCard.module.css'
 import man from '../../assets/man.jpg'
 import {Link} from 'react-router-dom'
- import { capitalizeFirstLetter } from '../../util/capitalizeFirstLetter'
+//  import { capitalizeFirstLetter } from '../../util/capitalizeFirstLetter'
 import {format} from 'timeago.js'
 import { useSelector } from 'react-redux'
 
@@ -14,10 +14,12 @@ const ProfileCard = () => {
       <div className={classes.wrapper}>
         <div className={classes.top}>
           <div className={classes.imgContainer}>
-            <img src={man} className={classes.profileUserImg}/>
+          <img src={user.profileImg ? `http://localhost:5000/images/${user.profileImg}` : man} className={classes.profileUserImg} alt="Profile" />
+            {/* <img src={man} className={classes.profileUserImg}/> */}
           </div>
          <div className={classes.usernameAndCreatedAt}>
-             <p><span>Username:</span> {capitalizeFirstLetter(user.username)}</p>
+             <p><span>Username:</span> {user.username}</p>
+             {/* <p><span>Username:</span> {capitalizeFirstLetter(user.username)}</p> */}
 
          
            <p><span>Created At:</span> {format(user.createdAt)}</p>

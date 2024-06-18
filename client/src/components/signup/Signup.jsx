@@ -2,7 +2,7 @@ import React from 'react'
  import { useState } from 'react'
  import {Link, useNavigate} from 'react-router-dom'
  import {useDispatch} from 'react-redux'
- import img from '../../assets/woman2.jpg'
+ import img from '../../assets/platform4.jpg'
 import classes from './signup.module.css'
 import { register } from '../../redux/authSlice'
 
@@ -11,12 +11,20 @@ const Signup = () => {
    const [email, setEmail] = useState("")
    const [password, setPassword] = useState("")
   const [error, setError] = useState(false)
+  const [errorMessage, setErrorMessage] = useState("")
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
   const handleSignup = async(e) => {
     e.preventDefault() 
-    if(username === '' || email === '' || password === '') return
+    if (username === '' || email === '' || password === '') {
+      setError(true)
+      setErrorMessage("All fields are required!")
+      setTimeout(() => {
+        setError(false)
+      }, 3000)
+      return
+    }
     console.log(username, email, password) 
 
      try {
@@ -29,6 +37,16 @@ const Signup = () => {
       })
       console.log(res)
       
+      if (!res.ok) {
+        const errorData = await res.json();
+        setError(true);
+        setErrorMessage(errorData.message || 'Something went wrong');
+        setTimeout(() => {
+          setError(false);
+        }, 3000);
+        return;
+      }
+
       const data = await res.json()
       console.log(data)
       dispatch(register(data))
@@ -60,7 +78,8 @@ const Signup = () => {
            {
             error && (
               <div className={classes.errorMessage}>
-                 Wrong credentials! Try different ones
+                 {/* Wrong credentials! Try different ones */}
+                 {errorMessage}
               </div>
             )
            }

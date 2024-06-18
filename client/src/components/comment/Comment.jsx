@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai'
 import { useSelector } from 'react-redux'
 import { format } from 'timeago.js'
-import man from '../../assets/man2.jpg'
-import { capitalizeFirstLetter } from '../../util/capitalizeFirstLetter'
+import man from '../../assets/man.jpg'
+// import { capitalizeFirstLetter } from '../../util/capitalizeFirstLetter'
 import classes from './comment.module.css'
 
 const Comment = ({ c }) => {
@@ -37,9 +37,11 @@ const Comment = ({ c }) => {
   return (
     <div className={classes.container}>
       <div className={classes.commentLeft}>
-        <img src={man} className={classes.commentImg}/>
+        {/* <img src={man} className={classes.commentImg}/> */}
+         <img src={comment?.user?.profileImg ? `http://localhost:5000/images/${comment?.user?.profileImg}` : man} className={classes.commentImg} alt="Profile"/>
         <div className={classes.commentData}>
-          <span>{comment?.user?.username ? capitalizeFirstLetter(comment?.user?.username) : ''}</span>
+          <span>{comment?.user?.username ? (comment?.user?.username) : ''}</span>
+          {/* <span>{comment?.user?.username ? capitalizeFirstLetter(comment?.user?.username) : ''}</span> */}
           <span className={classes.commentTimeago}>{format(comment?.createdAt)}</span>
         </div>
         <div className={classes.commentText}>{comment?.commentText}</div>

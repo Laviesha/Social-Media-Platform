@@ -39,7 +39,7 @@
 }
 
 .topRightSide > h4:first-child{
-    text-transform: capitalize;
+    /* text-transform: capitalize; */
     font-size: 26px;
     color: #333;
     font-weight: bold;
@@ -124,5 +124,10 @@
     .container{
         margin-top: 2.5rem;
         margin-bottom: 4rem;
+    }
+    .bottom{
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
     }
 }

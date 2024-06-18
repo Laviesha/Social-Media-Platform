@@ -1,6 +1,6 @@
 import React from 'react'
 import classes from './login.module.css'
-import img from '../../assets/woman.jpg'
+import img from '../../assets/platform2.jpg'
 import {Link, useNavigate} from 'react-router-dom'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
@@ -13,22 +13,57 @@ const Login = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
-  const handleLogin = async(e) => {
+  // const handleLogin = async(e) => {
+  //   e.preventDefault()
+
+  //   if(email === '' || password === '') return
+
+  //   try {
+  //     const res = await fetch(`http://localhost:5000/auth/login`, {
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //       },
+  //       method: 'POST',
+  //       body: JSON.stringify({email, password})
+  //     })
+
+  //     const data = await res.json()
+  //     console.log(data)
+
+  //     dispatch(login(data))
+  //     navigate('/')
+  //   } catch (error) {
+  //     setError(true)
+  //     setTimeout(() => {
+  //       setError(false)
+  //     }, 3000)
+  //   }
+  // }
+  const handleLogin = async (e) => {
     e.preventDefault()
 
-    if(email === '' || password === '') return
+    if (email === '' || password === '') {
+      setError(true)
+      setTimeout(() => {
+        setError(false)
+      }, 3000)
+      return
+    }
 
     try {
-      const res = await fetch(`http://localhost:5000/auth/login`, {
+      const res = await fetch('http://localhost:5000/auth/login', {
         headers: {
           'Content-Type': 'application/json',
         },
         method: 'POST',
-        body: JSON.stringify({email, password})
+        body: JSON.stringify({ email, password })
       })
 
       const data = await res.json()
-      console.log(data)
+
+      if (!res.ok) {
+        throw new Error(data.message || 'Something went wrong')
+      }
 
       dispatch(login(data))
       navigate('/')

@@ -12,7 +12,10 @@ const Home = () => {
         <ProfileCard />
         <SuggestedUsers />
       </div>
+      <div  className={classes.ww}>
+        <h2 className={classes.cc}>Your Posts</h2>
       <Posts />
+      </div>
       <Rightside />
     </div>
     

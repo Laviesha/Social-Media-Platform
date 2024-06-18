@@ -129,3 +129,14 @@
     top: 5rem;
     right: 5rem;
 }
+@media only screen and (max-width: 768px){
+    .loginLeftSide{
+      width:30%;
+      display: none;
+    } 
+    .loginRightSide{
+        width:100%;
+        height: 100%;
+        overflow: scroll;
+    } 
+} 

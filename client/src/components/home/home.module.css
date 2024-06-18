@@ -1,16 +1,27 @@
 .container{
-    width: 90%;
-    margin: 0 auto;
-    margin-top: 40px;
-    display: grid;
+        width: 90%;
+        margin: 0 auto;
+        margin-top: 40px;
+        display: grid;
     grid-template-columns: 3fr 6.5fr 3fr;
     gap: 10rem;
+}
+.cc{
+    text-align: center;
+    margin-bottom: 2rem;
 }
 
 /* RESPONSIVEE */
 @media only screen and (max-width: 992px){
     .container{
+width:90%;
         gap: 5rem;
-        grid-template-columns: 2.5fr 10fr 2.5fr;
+       align-items: center;
+       justify-items: center;
+        display: flex;
+        flex-direction: column;
     }
+    /* .ww{
+        align-items: center;
+    } */
 }

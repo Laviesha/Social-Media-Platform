@@ -55,6 +55,7 @@ const ProfileDetail = () => {
     fetchProfilePosts()
   }, [id])
 
+  
   // handle follow function
   const handleFollowFunction = async() => {
     try {
@@ -94,7 +95,9 @@ const ProfileDetail = () => {
           </div>
           <div className={classes.topRightSide}>
             <h4>{profile?.username}</h4>
-            <h4>Bio: {profile?.desc ? profile.desc : 'Life is full of adventures'}</h4>
+            {/* <h4>Bio: {profile?.desc ? profile.desc : 'Life is full of adventures'}</h4> */}
+            {/* <span className={classes.shortBio}>{user?.bio ? user.bio : "Live is full of adventures"}</span> */}
+            <span className={classes.shortBio}>{profile?.bio ? profile.bio : "Live is full of adventures"}</span>
           </div>
           {
             profile?._id !== user._id &&

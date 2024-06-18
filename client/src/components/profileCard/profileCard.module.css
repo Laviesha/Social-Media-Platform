@@ -95,8 +95,8 @@ hr{
 
 @media only screen and (max-width: 768px){
     .container{
-        height: 250px;
-        width: 95%
+        height: 300px;
+        width: 100%
     }
 
     .usernameAndCreatedAt span{
