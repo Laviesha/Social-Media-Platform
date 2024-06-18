@@ -4,8 +4,9 @@ import { useState } from 'react'
 import {useSelector} from 'react-redux'
 import Post from '../post/Post'
 import classes from './posts.module.css'
-import {useNavigate} from 'react-router-dom'
+// import {useNavigate} from 'react-router-dom'
 
+import { Link, useNavigate } from 'react-router-dom'
 import {AiOutlineFileImage} from 'react-icons/ai'
 
 const Posts = () => {
@@ -87,13 +88,16 @@ const Posts = () => {
         )):<span>
 
 <div className={classes.wrapper}>
+  
           <h2>Upload Post</h2>
+
         <form onSubmit={handleCreatePost}>
            <input type="text" name="title" placeholder="Title..." onChange={handleState}/>
            <input type="text" name="desc" placeholder="Description..." onChange={handleState}/>
            <label htmlFor='photo'>Upload photo <AiOutlineFileImage /></label>
            <input type="file" id='photo' style={{display: 'none'}} onChange={(e) => setPhoto(e.target.files[0])}/>
            <input type="text" name="location" placeholder="Location..." onChange={handleState}/>
+          
            <button>Post</button>
            </form>
            </div>
